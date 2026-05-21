@@ -1,0 +1,35 @@
+{
+  "entities": {
+    "Provider": {
+      "title": "Provider",
+      "description": "Seorang mitra penyedia jasa yang terdaftar.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique ID mitra" },
+        "name": { "type": "string", "description": "Nama mitra" },
+        "whatsapp": { "type": "string", "description": "Nomor WhatsApp mitra" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number" },
+            "lng": { "type": "number" },
+            "address": { "type": "string" }
+          },
+          "required": ["lat", "lng", "address"]
+        },
+        "serviceType": { "type": "string", "description": "Kategori jasa" },
+        "rating": { "type": "number" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "whatsapp", "location", "serviceType", "rating"]
+    }
+  },
+  "firestore": {
+    "providers/{providerId}": {
+      "schema": "Provider",
+      "description": "Koleksi semua mitra penyedia jasa."
+    }
+  }
+}

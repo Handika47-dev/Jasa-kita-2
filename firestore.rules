@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Providers collection
+    match /providers/{providerId} {
+      // Public read so anyone can find services
+      allow read: if true;
+      
+      // Writes are handled via server-side API (proxy)
+      // If we wanted to allow client-side writes, we'd add validation here
+      allow write: if false; 
+    }
+  }
+}
